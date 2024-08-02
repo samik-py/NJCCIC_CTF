@@ -3,6 +3,19 @@
     background-color: rgb(39, 39, 39);
 }
 
+/* styles.css */
+.fade-in {
+    animation: fadeInAnimation 3s ease-in-out;
+}
+
+@keyframes fadeInAnimation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
 .headertext {
     color: #198754;
@@ -40,3 +53,56 @@
 }
 
 /*button styling*/
+
+.typing {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+    width: 12ch;
+}
+
+
+
+
+
+
+
+
+
+/* fade in *
+
+@keyframes fade-inout {
+    0%{ opacity: 1;}
+    100%{ opacity: 0;}
+  }
+ 
+  @-o-keyframes fade-inout{
+    0%{ opacity: 1;}
+    100%{ opacity: 0;}
+  }
+ 
+  @-moz-keyframes fade-inout{
+    0%{ opacity: 1;}
+    100%{ opacity: 0;}
+  }
+ 
+  @-webkit-keyframes fade-inout{
+    0%{ opacity: 1;}
+    100%{ opacity: 0;}
+  }
+  .fade-in-fade-out {
+     -webkit-animation: fade-inout 5s ;
+     -moz-animation: fade-inout 5s ;
+     -o-animation: fade-inout 5s ;
+      animation: fade-inout 5s ;
+  }
+
+  .welcome {
+    color: white;
+    justify-content: center;
+    text-align: center;
+    font-size: 100px;
+  }
+
