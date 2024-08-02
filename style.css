@@ -1,33 +1,38 @@
-/* styles.css */
+/* Background color */
 .background {
     background-color: rgb(39, 39, 39);
 }
 
-/* styles.css */
+/* Fade-in animation styles */
 .fade-in {
-    animation: fadeInAnimation 3s ease-in-out;
+    visibility: hidden;
+    animation: fadeInAnimation 5s ease-in-out 10s forwards; /* Added 3s delay and forwards */
 }
 
 @keyframes fadeInAnimation {
     from {
         opacity: 0;
+        visibility: visible; /* Ensure visibility is set to visible at the start of the animation */
     }
     to {
         opacity: 1;
+        visibility: visible;
     }
 }
 
+/* Header text styles */
 .headertext {
     color: #198754;
     text-align: center;
 }
 
+/* Text inside button styles */
 .textinbutton {
     margin-top: 20px;
 }
 
-/* button styling */
-.btn{
+/* Button styling */
+.btn {
     margin: 5px;
     border-radius: 50%; 
     height: 10vw; 
@@ -47,25 +52,41 @@
     }
 }
 
-.btn:hover{
+.btn:hover {
     transform: scale(1.1);
     transition: transform 0.3s ease-in-out;
 }
 
-/*button styling*/
-
-.typing {
+/* Typing animation container to hide initial text */
+.typing-container {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid;
     font-family: 'Courier New', Courier, monospace;
     font-size: 100px;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 3px solid;
-    width: 12ch;
-    
+    color: #198754; /* Font color */
 }
 
+.typing {
+    display: inline-block;
+    width: 0;
+    animation: typing 4s steps(12) 1s forwards, backspacing 4s steps(12) 6s forwards;
+}
 
+@keyframes typing {
+    from { width: 0; }
+    to { width: 12ch; }
+}
 
+@keyframes backspacing {
+    from { width: 12ch; }
+    to { width: 0; }
+}
+@keyframes disappear {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
 
 
 
