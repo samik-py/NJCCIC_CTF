@@ -6,7 +6,7 @@
 /* Fade-in animation styles */
 .fade-in {
     visibility: hidden;
-    animation: fadeInAnimation 5s ease-in-out 10s forwards; /* Added 3s delay and forwards */
+    animation: fadeInAnimation 2s ease-in 8s forwards; /* Added 3s delay and forwards */
 }
 
 @keyframes fadeInAnimation {
@@ -64,14 +64,15 @@
     white-space: nowrap;
     border-right: 3px solid;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 100px;
+    font-size: 5vw;
+    margin-left: 30%;
     color: #198754; /* Font color */
 }
 
 .typing {
     display: inline-block;
     width: 0;
-    animation: typing 4s steps(12) 1s forwards, backspacing 4s steps(12) 6s forwards;
+    animation: typing 2s steps(12) .5s forwards, backspacing 2s steps(12) 5s forwards;
 }
 
 @keyframes typing {
