@@ -3,12 +3,11 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const path = require('path');
-const filePath = path.join(__dirname, 'public', 'index.html');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-  res.sendFile(filePath);
+  res.sendFile(path.join(__dirname, 'public', 'loadingPage.html'));
 })
 
 app.listen(port, () => {
