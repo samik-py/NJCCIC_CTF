@@ -5,30 +5,137 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+
     <title>NJCCIC CTF</title>
-</head>
-
-<body class="background">
-    <h1 class="headertext fade-in">
-        NJCCIC Capture The Flag
-    </h1>
-
-    <div class="container d-flex justify-content-center text-center fade-in">
-        <a href="challenges.html" target="_blank" class="btn btn-success btn-lg">
-            <p class="textinbutton">Text</p>
-        </a>
-    </div>
-
-    <div class="typing-container">
-        <div class="typing">Welcome...</div>
-    </div>
 
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const challengeLink = document.getElementById('challenge-link');
+
+            challengeLink.addEventListener('click', () => {
+                console.log("clicked");
+                window.location.href = 'challenges.html';
+            });
+        });
+
+    </script>
+    <style>
+        :root {
+            --color: #4973ff;
+        }
+
+        body {
+            background-color: rgb(39, 39, 39);
+            font-size: 16px;
+            font-family: 'Montserrat', sans-sherif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .content {
+            font-family: monospace;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            position: relative;
+            background-color: rgb(39, 39, 39);
+            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero h2 {
+            position: relative;
+            z-index: 1;
+            font-size: 4.5rem;
+            margin: 0 0 10px;
+            line-height: 1;
+            color: rgba(255, 255, 255, 0.9);
+            transition: color 0.3s;
+        }
+
+        .hero p {
+            position: relative;
+            z-index: 1;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.4;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .hero h2:hover,
+        .hero p:hover {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+
+        .waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background-color: var(--color);
+            box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+            transition: 500ms;
+        }
+
+        .waves::before,
+        .waves::after {
+            content: '';
+            position: absolute;
+            width: 300vw;
+            height: 300vw;
+            top: -65vw;
+            left: 50%;
+            transform: translate(-50%, -75%);
+        }
+
+        .waves::before {
+            border-radius: 44%;
+            background-color: rgba(39, 39, 39, 1);
+            animation: waves 8s linear infinite;
+        }
+
+        .waves::after {
+            border-radius: 44%;
+            background-color: rgba(39, 39, 39, .5);
+            animation: waves 15s linear infinite;
+        }
+
+        @keyframes waves {
+            0% {
+                transform: translate(-50%, -75%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -75%) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="background">
+    <section class="hero">
+        <div class="content">
+            <h2>Welcome!</h2>
+            <p id="challenge-link">Welcome to our NJCCIC cybersecurity capture the flag. Click on me to begin the challenge!</p>
+        </div>
+        <div class="waves"></div>
+    </section>
+
+
 </body>
 
 </html>
