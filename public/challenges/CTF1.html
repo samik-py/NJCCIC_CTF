@@ -8,101 +8,132 @@
 
   <style>
     body {
-      font-family: 'Courier New', Courier, monospace;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: rgb(39, 39, 39);
-      color: #61dafb;
-      margin: 0;
-    }
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(39, 39, 39);
+            color: #61dafb;
+            margin: 0;
+            flex-direction: column;
+        }
 
-    .container {
-      text-align: center;
-      transition: transform 2s;;
-    }
+        .container {
+            text-align: center;
+            transition: transform 2s;;
+        }
 
-    .title {
-      font-size: 2.5em;
-      overflow: hidden;
-      border-right: .15em solid #61dafb;
-      white-space: nowrap;
-      margin: 0 auto;
-      letter-spacing: .15em;
-      width: fit-content;
-      animation: typing 4s steps(40, end), blink-caret .75s step-end infinite, hide-caret 0s forwards 4s;;
-    }
+        .title {
+            font-size: 2.5em;
+            overflow: hidden;
+            border-right: .15em solid #61dafb;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            width: fit-content;
+            animation: typing 4s steps(40, end), blink-caret .75s step-end infinite, hide-caret 0s forwards 4s;;
+        }
 
-    .briefing {
-      font-size: 1.2em;
-      opacity: 0;
-      animation: fadeIn 2s forwards;
-      animation-delay: 4s;
-    }
+        .briefing {
+            font-size: 1.2em;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 4s;
+        }
 
-    .moved {
-      transform: translateY(-40vh) scale(0.75);
-    }
+        .moved {
+            transform: translateY(-40vh) scale(0.75);
+        }
 
-    @keyframes typing {
-      from {
-        width: 0;
-      }
+        .email-content {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+            background-color: #282c34;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+        }
 
-      to {
-        width: 100%;
-      }
-    }
+        @keyframes typing {
+            from {
+                width: 0;
+            }
 
-    @keyframes blink-caret {
+            to {
+                width: 100%;
+            }
+        }
 
-      from,
-      to {
-        border-color: transparent;
-      }
+        @keyframes blink-caret {
 
-      50% {
-        border-color: #61dafb;
-      }
-    }
+            from,
+            to {
+                border-color: transparent;
+            }
 
-    @keyframes hide-caret {
-    to { border-color: transparent; }
-    }
+            50% {
+                border-color: #61dafb;
+            }
+        }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
+        @keyframes hide-caret {
+        to { border-color: transparent; }
+        }
 
-      to {
-        opacity: 1;
-      }
-    }
-  </style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-    const title = document.querySelector('.title');
-    const briefing = document.querySelector('.briefing');
-    const container = document.querySelector('.container');
-    
-    briefing.addEventListener('animationend', () => {
-        setTimeout(() => {
-            container.classList.add('moved');
-        }, 4000);
-    });
-});
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
 
-  </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const title = document.querySelector('.title');
+            const briefing = document.querySelector('.briefing');
+            const container = document.querySelector('.container');
+            const emailContent = document.querySelector('.email-content');
+            
+            briefing.addEventListener('animationend', () => {
+                setTimeout(() => {
+                    container.classList.add('moved');
+                    emailContent.style.display = 'block';
+                }, 4000);
+            });
+        });
+    </script>
 </head>
 
 <body>
-  <div class="container">
-    <h1 class="title">Mission Briefing</h1>
-    <p class="briefing">The quick brown fox jumped over the lazy dog.</p>
-  </div>
+    <div class="container">
+        <h1 class="title">Mission Briefing</h1>
+        <p class="briefing">Click on suspicious parts of the email</p>
+    </div>
+    <div class="email-content">
+        <p><strong>Subject:</strong> Urgent: Account Verification Required!</p>
+        <p><strong>From:</strong> support@paypa1.com</p>
+        <p><strong>To:</strong> user@example.com</p>
+        
+        <p>Dear Customer,</p>
+        
+        <p>We have detected unusual activity on your account and require immediate verification to prevent suspension. Please click the link below to verify your account details:</p>
+        
+        <p><a href="http://www.paypa1-verification.com" style="color: #61dafb;">Verify Your Account</a></p>
+        
+        <p>Failure to verify within 24 hours will result in temporary suspension of your account.</p>
+        
+        <p>For your security, do not share this email with anyone.</p>
+        
+        <p>Thank you for your prompt attention to this matter.</p>
+        
+        <p>Best regards,<br>PayPal Support Team</p>
+    </div>
 </body>
 
 </html>

