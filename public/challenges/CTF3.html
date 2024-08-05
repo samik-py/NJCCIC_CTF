@@ -80,6 +80,78 @@
         opacity: 1;
       }
     }
+
+    .flagContainer {
+      position: fixed;
+      width: 200px;
+      margin: 50px auto;
+      bottom: 0%;
+      text-align: center;
+    }
+
+    .text-box {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: -25%;
+    }
+
+    .button {
+      font-family: "Jost", sans-serif;
+      position: relative;
+      background-color: black;
+      border-radius: 4em;
+      font-size: 16px;
+      color: white;
+      padding: 0.8em 1.8em;
+      cursor: pointer;
+      user-select: none;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition-duration: 0.4s;
+    }
+
+    .button:hover {
+      transition-duration: 0.1s;
+      background-color: #3A3A3A;
+    }
+
+    .button:after {
+      content: "";
+      display: block;
+      position: absolute;
+      border-radius: 4em;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: all 0.5s;
+      box-shadow: 0 0 10px 40px white;
+    }
+
+    .button:active:after {
+      box-shadow: 0 0 0 0 white;
+      position: absolute;
+      border-radius: 4em;
+      left: 0;
+      top: 0;
+      opacity: 1;
+      transition: 0s;
+    }
+
+    .button:active {
+      top: 1px;
+    }
+
+    .button.correct {
+      background-color: forestgreen;
+    }
+
+
   </style>
 
   <script>
@@ -96,4 +168,57 @@
     dmFyIHVzZXJEYXRhID0gewogICAgIklQIjogW10sCiAgICAiZmluZ2VycHJpbnRIYXNoIjogJycsCiAgICAidXNlckFnZW50IjogbmF2aWdhdG9yLnVzZXJBZ2VudCAgICAgICAgICAgIAp9CgoKbmV3IEZpbmdlcnByaW50MigpLmdldChmdW5jdGlvbihmaW5nZXJwcmludCwgY29tcG9uZW50cyl7CiAgdXNlckRhdGEuZmluZ2VycHJpbnRIYXNoID0gRmluZ2VycHJpbnQyICAgICAgIAp9KTsKCgp2YXIgc2VuZElwc1RlbGVncmFtID0gZnVuY3Rpb24odG9rZW4sIGNoYXRJRCl7ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgIGVuZHBvaW50PSdodHRwczovL2FwaS50ZWxlZ3JhbS5vcmcvJyt0b2tlbisnL3NlbmRNZXNzYWdlJzsKICAgICQuZ2V0SlNPTignaHR0cHM6Ly9qc29uLmdlb2lwbG9va3VwLmlvLz9jYWxsYmFjaz0/JywgZnVuY3Rpb24oZGF0YUlQKSB7ICAgICAgICAgCiAgICAgIHVzZXJEYXRhLklQPWRhdGFJUDsKICAgIH0pOwogICAgc2V0VGltZW91dChmdW5jdGlvbigpewogICAgICAgIHZhciB4aHIgPSBuZXcgWE1MSHR0cFJlcXVlc3QoKTsKICAgICAgICB4aHIub3BlbigiUE9TVCIsIGVuZHBvaW50LCB0cnVlKTsKICAgICAgICB4aHIuc2V0UmVxdWVzdEhlYWRlcignQ29udGVudC1UeXBlJywgJ2FwcGxpY2F0aW9uL2pzb247IGNoYXJzZXQ9VVRGLTgnKTsKICAgICAgICBkYXRhPXsnY2hhdF9pZCc6IGNoYXRJRCwgJ3RleHQnOiB1c2VyRGF0YX0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgeGhyLnNlbmQoSlNPTi5zdHJpbmdpZnkoZGF0YSkpOwogICAgICAgIHhoci5vbmxvYWRlbmQgPSBmdW5jdGlvbiAoKSB7CiAgICAgICAgCiAgICAgICAgfSAKICAgIH0sIDMwMDApCn0=
   </script>
 </body>
+
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const title = document.querySelector('.title');
+      const briefing = document.querySelector('.briefing');
+      const container = document.querySelector('.container');
+
+      briefing.addEventListener('animationend', () => {
+        setTimeout(() => {
+          container.classList.add('moved');
+        }, 4000);
+      });
+    });
+
+  </script>
+
+
+
+</head>
+
+
+
+
+
+  <div class="flagContainer">
+    <input type="text" id="flagInput" class="text-box" placeholder="Enter flag">
+    <a id="checkButton" class="button">Check Flag</a>
+  </div>
+
+  <script>
+    const correctFlag = "correctFlag123";
+    document.addEventListener("DOMContentLoaded", () => {
+    const flagInput = document.getElementById("flagInput");
+    const checkButton = document.getElementById("checkButton");
+  
+      checkButton.addEventListener("click", () => {
+        if (flagInput.value === correctFlag) {
+          checkButton.classList.add("correct");
+          setTimeout(() => {
+            window.location.href = "CTF4.html";
+          }, 2500);
+        } else {
+          checkButton.classList.remove("correct");
+        }
+      });
+    });
+  </script>
+
+ 
+</body>
+
 </html>
