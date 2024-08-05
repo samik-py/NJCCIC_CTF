@@ -115,11 +115,11 @@
                 opacity: 1;
             }
         }
-    </style>
+
       to {
         opacity: 1;
       }
-    }
+
 
     .flagContainer {
       position: fixed;
@@ -226,7 +226,7 @@
 <body>
     <div class="container">
         <h1 class="title">Mission Briefing</h1>
-        <p class="briefing">Click on suspicious parts of the email</p>
+        <p class="briefing">Find the suspicious parts of the email</p>
     </div>
     <div class="email-content">
         <p><strong>Subject:</strong> Urgent: Account Verification Required!</p>
@@ -247,10 +247,6 @@
         
         <p>Best regards,<br>PayPal Support Team</p>
     </div>
-  <div class="container">
-    <h1 class="title">Mission Briefing</h1>
-    <p class="briefing">The quick brown fox jumped over the lazy dog.</p>
-  </div>
 
   <div class="flagContainer">
     <input type="text" id="flagInput" class="text-box" placeholder="Enter flag">
@@ -258,7 +254,7 @@
   </div>
 
   <script>
-    const correctFlag = "correctFlag123";
+    const correctFlag = "support@paypa1.com";
     document.addEventListener("DOMContentLoaded", () => {
     const flagInput = document.getElementById("flagInput");
     const checkButton = document.getElementById("checkButton");
