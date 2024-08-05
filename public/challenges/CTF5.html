@@ -1,11 +1,72 @@
 <!doctype html>
 <html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Capture the Flag: Challenge 1</title>
-  </head>
-  <body>
-    <img src="images/firefox-icon.png" alt="My test image" />
-  </body>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Capture the Flag: Challenge 5</title>
+
+  <style>
+    .flagContainer {
+      position: fixed;
+      width: 200px;
+      margin: 50px auto;
+      bottom: 0%;
+    }
+
+    .text-box {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: -20%;
+    }
+
+    .button {
+      position: relative;
+      width: 100%;
+      padding: 10px;
+      border-radius: 1vh;
+      background-color: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .button.correct {
+      background-color: green;
+    }
+  </style>
+
+</head>
+
+<body>
+  <img src="images/firefox-icon.png" alt="My test image" />
+
+  <div class="flagContainer">
+    <input type="text" id="flagInput" class="text-box" placeholder="Enter flag">
+    <button id="checkButton" class="button">Check Flag</button>
+  </div>
+
+  <script>
+    const correctFlag = "correctFlag123";
+        document.addEventListener("DOMContentLoaded", () => {
+            const flagInput = document.getElementById("flagInput");
+            const checkButton = document.getElementById("checkButton");
+
+            checkButton.addEventListener("click", () => {
+                if (flagInput.value === correctFlag) {
+                    checkButton.classList.add("correct");
+                    setTimeout(() => {
+                        window.location.href = "CTF2.html";
+                    }, 3000);
+                } else {
+                    checkButton.classList.remove("correct");
+                }
+            });
+        });
+  </script>
+</body>
+
 </html>

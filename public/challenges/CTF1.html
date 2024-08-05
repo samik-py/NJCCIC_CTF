@@ -20,7 +20,8 @@
 
     .container {
       text-align: center;
-      transition: transform 2s;;
+      transition: transform 2s;
+      ;
     }
 
     .title {
@@ -31,7 +32,8 @@
       margin: 0 auto;
       letter-spacing: .15em;
       width: fit-content;
-      animation: typing 4s steps(40, end), blink-caret .75s step-end infinite, hide-caret 0s forwards 4s;;
+      animation: typing 4s steps(40, end), blink-caret .75s step-end infinite, hide-caret 0s forwards 4s;
+      ;
     }
 
     .briefing {
@@ -68,7 +70,9 @@
     }
 
     @keyframes hide-caret {
-    to { border-color: transparent; }
+      to {
+        border-color: transparent;
+      }
     }
 
     @keyframes fadeIn {
@@ -80,20 +84,51 @@
         opacity: 1;
       }
     }
+
+    .flagContainer {
+      position: fixed;
+      width: 200px;
+      margin: 50px auto;
+      bottom: 0%;
+    }
+
+    .text-box {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: -20%;
+    }
+
+    .button {
+      position: relative;
+      width: 100%;
+      padding: 10px;
+      border-radius: 1vh;
+      background-color: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .button.correct {
+      background-color: green;
+    }
   </style>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-    const title = document.querySelector('.title');
-    const briefing = document.querySelector('.briefing');
-    const container = document.querySelector('.container');
-    
-    briefing.addEventListener('animationend', () => {
+      const title = document.querySelector('.title');
+      const briefing = document.querySelector('.briefing');
+      const container = document.querySelector('.container');
+
+      briefing.addEventListener('animationend', () => {
         setTimeout(() => {
-            container.classList.add('moved');
+          container.classList.add('moved');
         }, 4000);
+      });
     });
-});
 
   </script>
 </head>
@@ -103,6 +138,30 @@
     <h1 class="title">Mission Briefing</h1>
     <p class="briefing">The quick brown fox jumped over the lazy dog.</p>
   </div>
+
+  <div class="flagContainer">
+    <input type="text" id="flagInput" class="text-box" placeholder="Enter flag">
+    <button id="checkButton" class="button">Check Flag</button>
+  </div>
+
+  <script>
+    const correctFlag = "correctFlag123";
+        document.addEventListener("DOMContentLoaded", () => {
+            const flagInput = document.getElementById("flagInput");
+            const checkButton = document.getElementById("checkButton");
+
+            checkButton.addEventListener("click", () => {
+                if (flagInput.value === correctFlag) {
+                    checkButton.classList.add("correct");
+                    setTimeout(() => {
+                        window.location.href = "CTF2.html";
+                    }, 3000);
+                } else {
+                    checkButton.classList.remove("correct");
+                }
+            });
+        });
+  </script>
 </body>
 
 </html>
