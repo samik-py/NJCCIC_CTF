@@ -12,19 +12,64 @@
 */
 
 
-const correctFlag = "correctFlag123";
-document.addEventListener("DOMContentLoaded", () => {
-const flagInput = document.getElementById("flagInput");
-const checkButton = document.getElementById("checkButton");
+document.addEventListener('DOMContentLoaded', () => {
+  const questions = [
+    { question: "This site in infected with malware. Find the name of the function called in the malware.", answer: "seamonster" },
+    { question: "What is the webhook URL?", answer: "https://discord.com/api/webhooks/123456/123abc" },
+    // Add more questions as needed
+  ];})
 
-  checkButton.addEventListener("click", () => {
-    if (flagInput.value === correctFlag) {
-      checkButton.classList.add("correct");
-      setTimeout(() => {
-        window.location.href = "../home.html";
-      }, 2500);
-    } else {
-      checkButton.classList.remove("correct");
-    }
+  document.addEventListener('DOMContentLoaded', () => {
+    const questionsAndAnswers = [
+      { question: "What is the first flag?", correctFlag: "flag1" },
+      { question: "What is the second flag?", correctFlag: "flag2" },
+      { question: "What is the third flag?", correctFlag: "flag3" }
+    ];
+    
+    const flagInput = document.getElementById('flagInput');
+    const checkButton = document.getElementById('checkButton');
+    const promptContainer = document.getElementById('promptContainer');
+    let currentQuestionIndex = 0;
+  
+    const displayQuestion = () => {
+      if (currentQuestionIndex < questionsAndAnswers.length) {
+        promptContainer.innerText = questionsAndAnswers[currentQuestionIndex].question;
+      }
+    };
+  
+    checkButton.addEventListener('click', () => {
+      if (currentQuestionIndex < questionsAndAnswers.length) {
+        const userFlag = flagInput.value;
+        if (userFlag === questionsAndAnswers[currentQuestionIndex].correctFlag) {
+          if (currentQuestionIndex === questionsAndAnswers.length - 1) {
+            promptContainer.innerText = 'Correct Flag! Proceeding to CTF4.';
+            setTimeout(() => {
+              window.location.href = 'CTF4.html'; // Redirect to CTF4
+            }, 2000); // Redirect after 2 seconds
+          } else {
+            promptContainer.innerText = 'Correct Flag! Proceeding to the next question.';
+            currentQuestionIndex++;
+            setTimeout(displayQuestion, 2000); // Display next question after 2 seconds
+          }
+        } else {
+          promptContainer.innerText = 'Incorrect Flag. Try again.';
+        }
+      }
+    });
+  
+    // Initial question display
+    displayQuestion();
   });
-});
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const title = document.querySelector('.title');
+    const briefing = document.querySelector('.briefing');
+    const container = document.querySelector('.container');
+  
+    briefing.addEventListener('animationend', () => {
+      setTimeout(() => {
+        container.classList.add('moved');
+      }, 4000);
+    });
+  });
+  

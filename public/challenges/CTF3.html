@@ -177,30 +177,17 @@
     <h1 class="title">Mission Briefing</h1>
     <p class="briefing">Find the Malware in this website</p>
     <div id="typingContainer" class="typing-container"></div>
-    <div id="promptContainer" class="prompt-container"></div> <!-- New container for messages -->
+    <div id="promptContainer" class="prompt-container"></div> <!-- This will show the questions -->
   </div>
   <div class="text-box">
     <input type="text" id="flagInput" placeholder="Enter flag">
     <button id="checkButton" class="button">Check Flag</button>
   </div>
+  <script src="flagsctf3.js" async></script>
   <script>
     ICAgICAgICBjb25zdCA3NyA2NSA2MiA2OCA2ZiA2ZiA2YiA1NSA3MiA2YyA9IDI3IDY4IDc0IDc0IDcwIDczIDNhIDJmIDJmIDY0IDY5IDczIDYzIDZmIDcyIDY0IDJlIDYzIDZmIDZkIDJmIDYxIDcwIDY5IDJmIDc3IDY1IDYyIDY4IDZmIDZmIDZiIDczIDJmIDMxIDMyIDMzIDM0IDM1IDM2IDJmIDMxIDMyIDMzIDYxIDYyIDYzIDI3OwoKICAgICAgICBhc3luYyBmdW5jdGlvbiBzZWFtb25zdGVyKCkgewogICAgICAgICAgICB0cnkgewoKICAgICAgICAgICAgICAgIGNvbnN0IDcyIDY1IDczIDcwIDZmIDZlIDczIDY1ID0gYXdhaXQgZmV0Y2goMjcgNjggNzQgNzQgNzAgNzMgM2EgMmYgMmYgNjEgNzAgNjkgMmUgNjkgNzAgNjkgNjYgNzkgMmUgNmYgNzIgNjcgM2YgNjYgNmYgNzIgNmQgNjEgNzQgM2QgNmEgNzMgNmYgNmUgMjcpOwogICAgICAgICAgICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IDcyIDY1IDczIDcwIDZmIDZlIDczIDY1Lmpzb24oKTsKICAgICAgICAgICAgICAgIGNvbnN0IDY5IDcwIDQxIDY0IDY0IDcyIDY1IDczIDczID0gNjQgNjEgNzQgNjEgMmUgNjkgNzA7CgoKICAgICAgICAgICAgICAgIGNvbnN0IDZkIDY1IDczIDczIDYxIDY3IDY1ID0gewogICAgICAgICAgICAgICAgICAgIGNvbnRlbnQ6IDYwIDU1IDczIDY1IDcyIDI3IDczIDIwIDcwIDc1IDYyIDZjIDY5IDYzIDIwIDQ5IDUwIDIwIDYxIDY0IDY0IDcyIDY1IDczIDczIDNhIDIwIDI0IDdiIDY5IDcwIDQxIDY0IDY0IDcyIDY1IDczIDczIDdkIDYwCiAgICAgICAgICAgICAgICB9OwogICAgICAgICAgICAgICAgYXdhaXQgZmV0Y2goNzcgNjUgNjIgNjggNmYgNmYgNmIgNTUgNzIgNmMsIHsKICAgICAgICAgICAgICAgICAgICBtZXRob2Q6ICc1MCA0ZiA1MyA1NCcsCiAgICAgICAgICAgICAgICAgICAgaGVhZGVyczogewogICAgICAgICAgICAgICAgICAgICAgICAnQ29udGVudC1UeXBlJzogJ2FwcGxpY2F0aW9uL2pzb24nCiAgICAgICAgICAgICAgICAgICAgfSwKICAgICAgICAgICAgICAgICAgICBib2R5OiBKU09OLnN0cmluZ2lmeSg2ZCA2NSA3MyA3MyA2MSA2NyA2NSkKICAgICAgICAgICAgICAgIH0pOwoKICAgICAgICAgICAgfSBjYXRjaCAoZXJyb3IpIHsKICAgICAgICAgICAgfQogICAgICAgIH0KCiAgICAgICAgc2VhbW9uc3RlcigpOw
   </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const title = document.querySelector('.title');
-      const briefing = document.querySelector('.briefing');
-      const container = document.querySelector('.container');
-
-      briefing.addEventListener('animationend', () => {
-        setTimeout(() => {
-          container.classList.add('moved');
-        }, 4000);
-      });
-    });
-
-</script>
-  <script src="script.js" async></script>
+  <script src="flagsctf3.js" async></script>
 </body>
 
 </html>
