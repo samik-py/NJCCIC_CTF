@@ -11,65 +11,51 @@
 |_| \_|\___/ \__| |_|   \__,_|_|   \__|  \___/|_|    \____| |_| |_|    
 */
 
-
 document.addEventListener('DOMContentLoaded', () => {
   const questions = [
-    { question: "This site in infected with malware. Find the name of the function called in the malware.", answer: "seamonster" },
-    { question: "What is the webhook URL?", answer: "https://discord.com/api/webhooks/123456/123abc" },
-    // Add more questions as needed
-  ];})
+    { question: "\nThis website is infected with malware. Find it and send the function name.", flag: "seamonster" },
+    { question: "\nWhat is the webhook url?", flag: "https://discord.com/api/webhooks/123456/123abc" },
+    { question: "\nWhat is the API link?", flag: "https://api.ipify.org/?format=json%27" },
+    // Add more questions here
+  ];
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const questionsAndAnswers = [
-      { question: "What is the first flag?", correctFlag: "flag1" },
-      { question: "What is the second flag?", correctFlag: "flag2" },
-      { question: "What is the third flag?", correctFlag: "flag3" }
-    ];
-    
-    const flagInput = document.getElementById('flagInput');
-    const checkButton = document.getElementById('checkButton');
-    const promptContainer = document.getElementById('promptContainer');
-    let currentQuestionIndex = 0;
-  
-    const displayQuestion = () => {
-      if (currentQuestionIndex < questionsAndAnswers.length) {
-        promptContainer.innerText = questionsAndAnswers[currentQuestionIndex].question;
+  let currentQuestionIndex = 0;
+  const flagInput = document.getElementById('flagInput');
+  const checkButton = document.getElementById('checkButton');
+  const typingContainer = document.getElementById('typingContainer');
+  const promptContainer = document.getElementById('promptContainer');
+
+  function displayCurrentQuestion() {
+    typingContainer.textContent = questions[currentQuestionIndex].question;
+  }
+
+  checkButton.addEventListener('click', () => {
+    const userFlag = flagInput.value;
+    if (userFlag === questions[currentQuestionIndex].flag) {
+      if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        displayCurrentQuestion();
+        flagInput.value = '';
+      } else {
+        alert('Advancing to CTF4');
+        window.location.href = 'CTF4.html';
       }
-    };
-  
-    checkButton.addEventListener('click', () => {
-      if (currentQuestionIndex < questionsAndAnswers.length) {
-        const userFlag = flagInput.value;
-        if (userFlag === questionsAndAnswers[currentQuestionIndex].correctFlag) {
-          if (currentQuestionIndex === questionsAndAnswers.length - 1) {
-            promptContainer.innerText = 'Correct Flag! Proceeding to CTF4.';
-            setTimeout(() => {
-              window.location.href = 'CTF4.html'; // Redirect to CTF4
-            }, 2000); // Redirect after 2 seconds
-          } else {
-            promptContainer.innerText = 'Correct Flag! Proceeding to the next question.';
-            currentQuestionIndex++;
-            setTimeout(displayQuestion, 2000); // Display next question after 2 seconds
-          }
-        } else {
-          promptContainer.innerText = 'Incorrect Flag. Try again.';
-        }
-      }
-    });
-  
-    // Initial question display
-    displayQuestion();
+    } else {
+      alert('Incorrect Flag. Try again.');
+    }
   });
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    const title = document.querySelector('.title');
-    const briefing = document.querySelector('.briefing');
-    const container = document.querySelector('.container');
-  
-    briefing.addEventListener('animationend', () => {
-      setTimeout(() => {
-        container.classList.add('moved');
-      }, 4000);
-    });
+
+  displayCurrentQuestion();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const title = document.querySelector('.title');
+  const briefing = document.querySelector('.briefing');
+  const container = document.querySelector('.container');
+
+  briefing.addEventListener('animationend', () => {
+    setTimeout(() => {
+      container.classList.add('moved');
+    }, 4000);
   });
-  
+});
