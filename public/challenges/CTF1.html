@@ -66,13 +66,7 @@
         }
 
         .email-content {
-            display: none;
-            margin-top: 20px;
-            text-align: left;
-            background-color: #282c34;
-            padding: 20px;
-            border-radius: 10px;
-            color: white;
+            
         }
 
         @keyframes typing {
@@ -121,21 +115,109 @@
       }
 
 
-    .flagContainer {
-      position: fixed;
-      width: 200px;
-      margin: 50px auto;
-      bottom: 0%;
+    
+      @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+
+.email-content {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+  background-color: #282c34;
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+}
+
+
+
+body {
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: rgb(39, 39, 39);
+      color: #61dafb;
+      margin: 0;
+    }
+
+    .container {
       text-align: center;
+      transition: transform 2s;
+    }
+
+    .title {
+      font-size: 2.5em;
+      overflow: hidden;
+      border-right: .15em solid #61dafb;
+      white-space: nowrap;
+      margin: 0 auto;
+      letter-spacing: .15em;
+      width: fit-content;
+      animation: typing 4s steps(40, end), blink-caret .75s step-end infinite, hide-caret 0s forwards 4s;
+    }
+
+    .briefing {
+      font-size: 1.2em;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+      animation-delay: 4s;
+    }
+
+    .moved {
+      transform: translateY(-40vh) scale(0.75);
+      transition: transform 2s;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes blink-caret {
+      from,
+      to {
+        border-color: transparent;
+      }
+      50% {
+        border-color: #61dafb;
+      }
+    }
+
+    @keyframes hide-caret {
+      to {
+        border-color: transparent;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
 
     .text-box {
-      position: absolute;
-      top: 0;
-      left: 0;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
       width: 100%;
+      text-align: center;
+      padding: 10px;
       box-sizing: border-box;
-      margin-top: -25%;
+      background-color: rgb(39, 39, 39);
+      z-index: 10;
     }
 
     .button {
@@ -190,6 +272,49 @@
     .button.correct {
       background-color: forestgreen;
     }
+
+    .typing-container, .prompt-container {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.2em;
+      white-space: pre;
+      border-right: 2px solid #61dafb;
+      padding: 10px;
+      margin: 20px auto;
+      overflow: hidden; /* Ensures the text doesn’t overflow the container */
+      width: fit-content;
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    .typing-container {
+      top: 50%; /* Center vertically */
+      transform: translate(-50%, -50%); /* Adjust position to center correctly */
+    }
+
+    .prompt-container {
+      top: 60%; /* Adjusted to be below the typing container */
+      opacity: 0; /* Initially hidden */
+      transition: opacity 1s; /* Smooth fade-in effect */
+    }
+    
+    .email-content {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0; 
+      width: 100%; 
+      margin: 0;
+      text-align: left;
+      background-color: #282c34;
+      padding: 5px;
+      border-radius: 10px;
+      color: white;
+}
+        
+
+ 
   </style>
 
     <script>
@@ -228,33 +353,38 @@
         <h1 class="title">Mission Briefing</h1>
         <p class="briefing">Find the suspicious parts of the email</p>
     </div>
-    <div class="email-content">
-        <p><strong>Subject:</strong> Urgent: Account Verification Required!</p>
-        <p><strong>From:</strong> support@paypa1.com</p>
-        <p><strong>To:</strong> user@example.com</p>
-        
-        <p>Dear Customer,</p>
-        
-        <p>We have detected unusual activity on your account and require immediate verification to prevent suspension. Please click the link below to verify your account details:</p>
-        
-        <p><a href="http://www.paypa1-verification.com" style="color: #61dafb;">Verify Your Account</a></p>
-        
-        <p>Failure to verify within 24 hours will result in temporary suspension of your account.</p>
-        
-        <p>For your security, do not share this email with anyone.</p>
-        
-        <p>Thank you for your prompt attention to this matter.</p>
-        
-        <p>Best regards,<br>PayPal Support Team</p>
-    </div>
 
-  <div class="flagContainer">
-    <input type="text" id="flagInput" class="text-box" placeholder="Enter flag">
-    <a id="checkButton" class="button">Check Flag</a>
+    
+    
+
+    <div class="container">
+
+      <div class="email-content">
+          <p><strong>Subject:</strong> Urgent: Account Verification Required!</p>
+          <p><strong>From:</strong> supp0rt@paypal.com</p>
+          <p><strong>To:</strong> jane.smith@gmail.com</p>
+
+          <p>Dear Customer,</p>
+
+          <p>We have detected unusual activity on your account and require immediate verification to prevent suspension. Please click the link below to verify your account:</p>
+
+          <p><a href="http://www.paypa1-verification.com" style="color: #61dafb;">Verify Your Account</a></p>
+
+          <p>Failure to verify within 24 hours will result in temporary suspension of your account.</p>
+
+          <p>For your security, do not share this email with anyone.</p>
+
+          <p>Best regards,<br>PayPal Support Team</p>
+      </div>
+  </div>
+
+  <div class="text-box">
+    <input type="text" id="flagInput" placeholder="Enter flag">
+    <button id="checkButton" class="button">Check Flag</button>
   </div>
 
   <script>
-    const correctFlag = "support@paypa1.com";
+    const correctFlag = "supp0rt@paypal.com";
     document.addEventListener("DOMContentLoaded", () => {
     const flagInput = document.getElementById("flagInput");
     const checkButton = document.getElementById("checkButton");
@@ -265,12 +395,23 @@
           setTimeout(() => {
             window.location.href = "CTF2.html";
           }, 2500);
+          alert("Correct! Advancing to level 2!");
         } else {
           checkButton.classList.remove("correct");
         }
       });
     });
   </script>
+
+ 
+
+
+    
+
+  
+
+
+ 
 </body>
 
 </html>
