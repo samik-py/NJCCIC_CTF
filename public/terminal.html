@@ -12,7 +12,7 @@
         <div id="terminal-output"></div>
         <div id="terminal-input">
             <span id="path">/</span>
-            <input type="text" id="command" autocomplete="off" autofocus>
+            <input type="text" placeholder="type 'help' to see all commands" id="command" autocomplete="off" autofocus>
         </div>
     </div>
 
@@ -164,7 +164,7 @@
 
 
     function displayHelp() {
-        printOutput('Available commands:\ncd [dir] - Change directory\nls - List contents\nmkdir [dir] - Create directory\ntouch [file] - Create file\npwd - Print working directory\nhelp - Display this help');
+        printOutput('Available commands:\ncd [dir] - Change directory\nls - List contents\nmkdir [dir] - Create directory\ntouch [file] - Create file\npwd - Print working directory\nhelp - Display this help\nclear - Clear terminal history');
     }
 
 
