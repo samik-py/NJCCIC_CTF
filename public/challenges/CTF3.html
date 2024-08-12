@@ -171,19 +171,23 @@
       transition: opacity 1s; /* Smooth fade-in effect */
     }
     .hint {
-      font-family: "Jost", sans-serif;
-      position: relative;
-      background-color: black;
-      border-radius: 4em;
-      font-size: 16px;
-      color: white;
-      padding: 0.8em 1.8em;
-      cursor: pointer;
-      user-select: none;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-      transition-duration: 0.4s;
+    font-family: "Jost", sans-serif;
+    position: absolute; /* Changed from relative to absolute */
+    background-color: black;
+    border-radius: 4em;
+    font-size: 16px;
+    color: white;
+    padding: 0.8em 1.8em;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 0.4s;
+    bottom: 20px; /* Positioning from the bottom */
+    right: 500px;  /* Positioning from the right */
+}
+    .align {
+      text-align: right;
     }
   </style>
 </head>
@@ -195,10 +199,7 @@
     
     eval(decodedScript);
   </script>
-  
-  <script>
-    alert("Hint: Cyberchef")
-    </script>
+
 
   <div class="container">
     <h1 class="title">Mission Briefing</h1>
@@ -208,6 +209,9 @@
   <div class="text-box">
     <input type="text" id="flagInput" placeholder="Enter flag">
     <button id="checkButton" class="button">Check Flag</button>
+  </div>
+  <div>
+    <button id="hint align" class="button">Hint</button>
   </div>
 
 
