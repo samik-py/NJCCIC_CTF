@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock Terminal</title>
+</head>
+
+<body>
+    <div id="terminal">
+        <div id="terminal-output"></div>
+        <div id="terminal-input">
+            <span id="path">/</span>
+            <input type="text" id="command" autocomplete="off" autofocus>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+<style>
+    body {
+        background-color: #1e1e1e;
+        color: #ffffff;
+        font-family: monospace;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    #terminal {
+        width: 600px;
+        background-color: #2d2d2d;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    #terminal-output {
+        height: 300px;
+        overflow-y: auto;
+        margin-bottom: 10px;
+    }
+
+    #terminal-input {
+        display: flex;
+        align-items: center;
+    }
+
+    #path {
+        color: #00ff00;
+    }
+
+    #command {
+        background: none;
+        border: none;
+        color: #ffffff;
+        font-family: monospace;
+        font-size: 16px;
+        flex: 1;
+    }
+
+    #command:focus {
+        outline: none;
+    }
+</style>
+
+
+<script>
+    const terminalOutput = document.getElementById('terminal-output');
+    const commandInput = document.getElementById('command');
+    const pathDisplay = document.getElementById('path');
+
+    let currentPath = '/';
+    let directoryStructure = {
+        '/': {
+            'home': {},
+            'var': {},
+            'etc': {
+                'config': {}
+            },
+            'usr': {
+                'bin': {},
+                'lib': {},
+            },
+        }
+    };
+
+    function printOutput(output) {
+        const outputLine = document.createElement('div');
+        outputLine.textContent = output;
+        terminalOutput.appendChild(outputLine);
+        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+    }
+
+    function changeDirectory(path) {
+        let newPath = path === '..' ? currentPath.split('/').slice(0, -2).join('/') : currentPath + path + '/';
+        if (newPath[newPath.length - 1] !== '/') {
+            newPath += '/';
+        }
+
+        if (newPath in directoryStructure) {
+            currentPath = newPath;
+            pathDisplay.textContent = newPath;
+        } else {
+            printOutput(`bash: cd: ${path}: No such file or directory`);
+        }
+    }
+
+    function handleCommand(event) {
+        if (event.key === 'Enter') {
+            const command = commandInput.value.trim();
+            commandInput.value = '';
+
+            if (command.startsWith('cd ')) {
+                const path = command.slice(3);
+                changeDirectory(path);
+            } else if (command === 'ls') {
+                listDirectory();
+            } else if (command.startsWith('mkdir ')) {
+                const name = command.slice(6);
+                makeDirectory(name);
+            } else if (command.startsWith('touch ')) {
+                const name = command.slice(6);
+                createFile(name);
+            } else if (command === 'pwd') {
+                printWorkingDirectory();
+            } else if (command === 'help') {
+                displayHelp();
+            } else {
+                printOutput(`${command}: command not found`);
+            }
+        }
+    }
+
+
+    function listDirectory() {
+        const directories = Object.keys(directoryStructure[currentPath]);
+        printOutput(directories.join(' '));
+    }
+
+    function makeDirectory(name) {
+        if (name in directoryStructure[currentPath]) {
+            printOutput(`mkdir: cannot create directory '${name}': File exists`);
+        } else {
+            directoryStructure[currentPath][name] = {};
+            printOutput(`Directory '${name}' created.`);
+        }
+    }
+
+    function printWorkingDirectory() {
+        printOutput(currentPath);
+    }
+
+
+    function displayHelp() {
+        printOutput('Available commands:\ncd [dir] - Change directory\nls - List contents\nmkdir [dir] - Create directory\ntouch [file] - Create file\npwd - Print working directory\nhelp - Display this help');
+    }
+
+
+
+
+    commandInput.addEventListener('keydown', handleCommand);
+
+</script>
+
+</html>
