@@ -131,6 +131,8 @@
                 printWorkingDirectory();
             } else if (command === 'help') {
                 displayHelp();
+            } else if (command === 'clear'){
+                clearTerminal();
             } else {
                 printOutput(`${command}: command not found`);
             }
@@ -156,11 +158,14 @@
         printOutput(currentPath);
     }
 
+    function clearTerminal(){
+        terminalOutput.innerHTML = "";
+    }
+
 
     function displayHelp() {
         printOutput('Available commands:\ncd [dir] - Change directory\nls - List contents\nmkdir [dir] - Create directory\ntouch [file] - Create file\npwd - Print working directory\nhelp - Display this help');
     }
-
 
 
 
