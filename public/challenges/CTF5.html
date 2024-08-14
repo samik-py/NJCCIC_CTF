@@ -178,7 +178,10 @@
 <body>
   <div class="container">
     <h1 class="title">Mission Briefing</h1>
-    <p class="briefing">The quick brown fox jumped over the lazy dog.</p>
+    <p class="briefing">You have peeked at the flag from the screen.</p>
+    <p class="briefing">Here, it will be encoded.</p>
+    <p class="briefing">YWJyYWNhZGFicmE1</p>
+    <p class="briefing">Is it base64 or radix40 encoded?</p>
   </div>
 
   <div class="flagContainer">
@@ -187,13 +190,12 @@
   </div>
 
   <script>
-    const correctFlag = "correctFlag123";
+    const encodedFlag = "YWJyYWNhZGFicmE1";
     document.addEventListener("DOMContentLoaded", () => {
     const flagInput = document.getElementById("flagInput");
     const checkButton = document.getElementById("checkButton");
-
-      checkButton.addEventListener("click", () => {
-        if (flagInput.value === correctFlag) {
+    checkButton.addEventListener("click", () => {
+        if (btoa(flagInput.value) === encodedFlag) {
           checkButton.classList.add("correct");
           setTimeout(() => {
             window.location.href = "../home.html";
@@ -207,3 +209,4 @@
 </body>
 
 </html>
+
