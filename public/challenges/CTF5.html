@@ -194,10 +194,8 @@
     document.addEventListener("DOMContentLoaded", () => {
     const flagInput = document.getElementById("flagInput");
     const checkButton = document.getElementById("checkButton");
-    console.log(btoa(encodedFlag))
-    console.log(atob("abracadabra5"))
-      checkButton.addEventListener("click", () => {
-        if (atob(flagInput.value) === encodedFlag) {
+    checkButton.addEventListener("click", () => {
+        if (btoa(flagInput.value) === encodedFlag) {
           checkButton.classList.add("correct");
           setTimeout(() => {
             window.location.href = "../home.html";
@@ -211,3 +209,4 @@
 </body>
 
 </html>
+
