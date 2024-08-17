@@ -172,7 +172,7 @@
     }
     .hint {
     font-family: "Jost", sans-serif;
-    position: absolute; /* Changed from relative to absolute */
+    position: fixed; /* Change to fixed */
     background-color: black;
     border-radius: 4em;
     font-size: 16px;
@@ -183,8 +183,8 @@
     text-align: center;
     text-decoration: none;
     transition-duration: 0.4s;
-    bottom: 20px; /* Positioning from the bottom */
-    right: 500px;  /* Positioning from the right */
+    bottom: 80px; /* Positioning from the bottom */
+    right: 50px;  /* Adjust this value to position the button from the right edge */
 }
     .align {
       text-align: right;
@@ -211,9 +211,18 @@
     <button id="checkButton" class="button">Check Flag</button>
   </div>
   <div>
-    <button id="hint align" class="button">Hint</button>
+    <button id="hint" class="button hint">Hint</button>
   </div>
 
+  <script>
+    // Add a click event listener to the button
+    document.querySelector('.hint').addEventListener('click', function() {
+      alert('Use Cyberchef to decrypt the script.');
+
+      // After the alert is closed, open a new tab with the specified URL
+      window.open('https://cyberchef.io', '_blank');
+    });
+  </script>
 
   <script src="flagsctf3.js" async></script>  <!--Not part of CTF. DO NOT OPEN-->
 
