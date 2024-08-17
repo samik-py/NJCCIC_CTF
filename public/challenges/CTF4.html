@@ -98,7 +98,6 @@
 
     .hintContainer {
       position: fixed;
-      width: 200px;
       margin: 50px auto;
       bottom: 10%;
       text-align: center;
@@ -197,6 +196,7 @@
   </div>
 
   <div class="hintContainer">
+    <p id="hint" type="text">Some browsers show the source of the page if you do Ctrl + U.</p>
     <a id="hintButton" class="button">Hint</a>
   </div>
 
@@ -205,7 +205,12 @@
     document.addEventListener("DOMContentLoaded", () => {
     const flagInput = document.getElementById("flagInput");
     const checkButton = document.getElementById("checkButton");
-
+    const hintText = document.getElementById("hint")
+    hintText.style.display = 'none'
+    const hintButton = document.getElementById("hintButton")
+    hintButton.addEventListener("click", () => {
+      hintText.style.display = 'block'
+    })
       checkButton.addEventListener("click", () => {
         if (flagInput.value === correctFlag) {
           checkButton.classList.add("correct");
