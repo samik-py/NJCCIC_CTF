@@ -96,6 +96,13 @@
       text-align: center;
     }
 
+    .hintContainer {
+      position: fixed;
+      margin: 50px auto;
+      bottom: 10%;
+      text-align: center;
+    }
+
     .text-box {
       position: absolute;
       top: 0;
@@ -188,12 +195,22 @@
     <a id="checkButton" class="button">Check Flag</a>
   </div>
 
+  <div class="hintContainer">
+    <p id="hint" type="text">Some browsers show the source of the page if you do Ctrl + U.</p>
+    <a id="hintButton" class="button">Hint</a>
+  </div>
+
   <script>
     const correctFlag = "correctFlag123";
     document.addEventListener("DOMContentLoaded", () => {
     const flagInput = document.getElementById("flagInput");
     const checkButton = document.getElementById("checkButton");
-
+    const hintText = document.getElementById("hint")
+    hintText.style.display = 'none'
+    const hintButton = document.getElementById("hintButton")
+    hintButton.addEventListener("click", () => {
+      hintText.style.display = 'block'
+    })
       checkButton.addEventListener("click", () => {
         if (flagInput.value === correctFlag) {
           checkButton.classList.add("correct");
