@@ -69,7 +69,6 @@
     }
 </style>
 
-
 <script>
     const terminalOutput = document.getElementById('terminal-output');
     const commandInput = document.getElementById('command');
@@ -77,17 +76,16 @@
 
     let currentPath = '/';
     let directoryStructure = {
-        '/': {
             'home': {},
             'var': {},
             'etc': {
-                'config': {}
+                'config': {},
+                '.hiddenfile': null
             },
             'usr': {
                 'bin': {},
                 'lib': {},
             },
-        }
     };
 
     function printOutput(output) {
@@ -97,18 +95,88 @@
         terminalOutput.scrollTop = terminalOutput.scrollHeight;
     }
 
-    function changeDirectory(path) {
-        let newPath = path === '..' ? currentPath.split('/').slice(0, -2).join('/') : currentPath + path + '/';
-        if (newPath[newPath.length - 1] !== '/') {
-            newPath += '/';
+    function getDirectoryFromPath(path) {
+        let targetDir = directoryStructure;
+        const pathSegments = path.split('/').filter(Boolean);
+
+        for (const segment of pathSegments) {
+            if (targetDir[segment] !== undefined) {
+                targetDir = targetDir[segment];
+            } else {
+                return null;
+            }
         }
 
-        if (newPath in directoryStructure) {
-            currentPath = newPath;
-            pathDisplay.textContent = newPath;
+        return targetDir;
+    }
+
+    function changeDirectory(path) {
+        if (path === '..') {
+            if (currentPath !== '/') {
+                currentPath = currentPath.split('/').slice(0, -2).join('/') + '/';
+            }
         } else {
-            printOutput(`bash: cd: ${path}: No such file or directory`);
+            let newPath = currentPath === '/' ? currentPath + path : currentPath + path;
+            if (newPath[newPath.length - 1] !== '/') {
+                newPath += '/';
+            }
+
+            if (getDirectoryFromPath(newPath)) {
+                currentPath = newPath;
+            } else {
+                printOutput(`bash: cd: ${path}: No such file or directory`);
+            }
         }
+        pathDisplay.textContent = currentPath;
+    }
+
+    function listDirectory(showHidden = false) {
+        const targetDir = getDirectoryFromPath(currentPath);
+
+        if (targetDir) {
+            const allFiles = Object.keys(targetDir);
+            const visibleFiles = showHidden ? allFiles : allFiles.filter(file => !file.startsWith('.'));
+
+            if (visibleFiles.length > 0) {
+                printOutput(visibleFiles.join(' '));
+            } else {
+                printOutput('');
+            }
+        } else {
+            printOutput('');
+        }
+    }
+
+    function makeDirectory(name) {
+        const targetDir = getDirectoryFromPath(currentPath);
+        if (name in targetDir) {
+            printOutput(`mkdir: cannot create directory '${name}': File exists`);
+        } else {
+            targetDir[name] = {};
+            printOutput(`Directory '${name}' created.`);
+        }
+    }
+
+    function createFile(name) {
+        const targetDir = getDirectoryFromPath(currentPath);
+        if (name in targetDir) {
+            printOutput(`touch: cannot create file '${name}': File exists`);
+        } else {
+            targetDir[name] = null;
+            printOutput(`File '${name}' created.`);
+        }
+    }
+
+    function printWorkingDirectory() {
+        printOutput(currentPath);
+    }
+
+    function clearTerminal() {
+        terminalOutput.innerHTML = "";
+    }
+
+    function displayHelp() {
+        printOutput('Available commands:\ncd [dir] - Change directory\nls - List contents\nls -a - List all contents including hidden files\nmkdir [dir] - Create directory\ntouch [file] - Create file\npwd - Print working directory\nhelp - Display this help\nclear - Clear terminal history');
     }
 
     function handleCommand(event) {
@@ -119,6 +187,8 @@
             if (command.startsWith('cd ')) {
                 const path = command.slice(3);
                 changeDirectory(path);
+            } else if (command === 'ls -a') {
+                listDirectory(true);
             } else if (command === 'ls') {
                 listDirectory();
             } else if (command.startsWith('mkdir ')) {
@@ -131,7 +201,7 @@
                 printWorkingDirectory();
             } else if (command === 'help') {
                 displayHelp();
-            } else if (command === 'clear'){
+            } else if (command === 'clear') {
                 clearTerminal();
             } else {
                 printOutput(`${command}: command not found`);
@@ -139,38 +209,7 @@
         }
     }
 
-
-    function listDirectory() {
-        const directories = Object.keys(directoryStructure[currentPath]);
-        printOutput(directories.join(' '));
-    }
-
-    function makeDirectory(name) {
-        if (name in directoryStructure[currentPath]) {
-            printOutput(`mkdir: cannot create directory '${name}': File exists`);
-        } else {
-            directoryStructure[currentPath][name] = {};
-            printOutput(`Directory '${name}' created.`);
-        }
-    }
-
-    function printWorkingDirectory() {
-        printOutput(currentPath);
-    }
-
-    function clearTerminal(){
-        terminalOutput.innerHTML = "";
-    }
-
-
-    function displayHelp() {
-        printOutput('Available commands:\ncd [dir] - Change directory\nls - List contents\nmkdir [dir] - Create directory\ntouch [file] - Create file\npwd - Print working directory\nhelp - Display this help\nclear - Clear terminal history');
-    }
-
-
-
     commandInput.addEventListener('keydown', handleCommand);
-
 </script>
 
 </html>
