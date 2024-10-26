@@ -346,8 +346,8 @@ document.addEventListener('DOMContentLoaded', () => {
         displayCurrentQuestion();
         flagInput.value = '';
       } else {
-        alert('Advancing to CTF4');
-        window.location.href = 'CTF4.html';
+        alert('Advancing to CTF5');
+        window.location.href = 'CTF5.html';
       }
     } else {
       alert('Incorrect Flag. Try again.');
